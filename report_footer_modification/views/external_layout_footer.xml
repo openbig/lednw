@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="external_layout_footer_inherit" inherit_id="report.external_layout_footer">
+    <xpath expr="//div[@class='footer']" position="replace">
+        <div class="footer" style="font-size:11px;">
+            <div class="row">
+                <div class="col-xs-3">
+                    <span><strong>Address:</strong></span><br/>
+                    <span>LED Nordwest</span><br/>
+                    <span>Sevelter Str. 6</span><br/>
+                    <span>DE-49661 Cloppenburg</span><br/>
+                    <span>Firm Owner:</span><br/>
+                    <span>Dirk Südkamp</span><br/>
+                </div>
+                <div class="col-xs-3">
+                    <span><strong>Bank details:</strong></span><br/>
+                    <span>MLPFDL</span><br/>
+                    <span>IBAN DE98672300004049601503</span><br/>
+                    <span>BIC MLPBDE61XXX</span><br/>
+                </div>
+                <div class="col-xs-3">
+                    <span><strong>Organisation:</strong></span><br/>
+                    <span>eu-vat-no: DE218303189</span><br/>
+                    <span>ger-tax-no: 5613904223</span><br/>
+                </div>
+                <div class="col-xs-3">
+                    <span><strong>Contact:</strong></span><br/>
+                    <span>Email: info@licht-effizienz.de</span><br/>
+                    <span>Web: http://www.licht-effizienz.de/</span><br/>
+                    <span></span><br/>
+                    <span>Tel: +49 (0) 4471 7009601</span><br/>
+                    <span>Fax: +49 (0) 4471 3226440</span><br/>
+                </div>
+            </div>
+        </div>
+    </xpath>
+</template>
+</data>
+</openerp>
