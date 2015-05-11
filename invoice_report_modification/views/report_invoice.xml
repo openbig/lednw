@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+    <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-5 col-xs-offset-7']" position="replace">
+        <div class="col-xs-5" style="margin-top: 24px">
+            <div t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.name"/>
+            <div t-field="o.partner_id.name"/>
+            <div t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}' />
+        </div>
+        <div class="col-xs-5 pull-right">
+            <div>
+                <strong>Invoice Date:</strong>     
+                <span t-field="o.date_invoice"/>       
+            </div>
+            <div>
+                <strong>Invoice Number:</strong>
+                <span t-field="o.number"/>
+            </div>
+        </div>
+    </xpath>
+
+    <xpath expr="//div[@class='page']/h2" position="replace">
+        <h2 style="margin-top:125px;">
+            <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
+            <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+            <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+            <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+            <span t-if="o.type == 'out_refund'">Refund</span>
+            <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+            <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+            <span t-field="o.number"/>
+        </h2>
+    </xpath>
+
+    <xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
+        <div class="row">
+            <div class="col-xs-5">
+                <div>
+                    <strong>Your Order:</strong>
+                    <span t-field="o.origin"/>
+                </div>
+                <div>
+                    <strong>Ordered by:</strong>
+                    <span t-field="o.partner_id.name"/>
+                </div>
+                <div>
+                    <strong>Our clerk in charge:</strong>
+                    <span t-field="o.create_uid"/>
+                </div>
+            </div>
+        </div>
+    </xpath>
+    <xpath expr="//div[@class='page']/div[@t-if='o.tax_line']" position="replace">
+    </xpath>
+</template>
+<template id="report_invoice_layouted_inherit" inherit_id="sale_layout.report_invoice_layouted">
+    <xpath expr="//div[@class='page']/table[@class='table table-condensed']/thead" position="replace">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th class="text-right">Taxes</th>
+                <th class="text-right">Unit Price</th>
+                <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                <th class="text-right">Price</th>
+            </tr>
+        </thead>
+    </xpath>
+    <xpath expr="//t[@t-if='p_index &lt; p_size - 1']/thead" position="replace">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th class="text-right">Taxes</th>
+                <th class="text-right">Unit Price</th>
+                <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                <th class="text-right">Price</th>
+            </tr>
+        </thead>
+    </xpath>
+    <xpath expr="//t[@t-foreach='o.sale_layout_lines(invoice_id=o.id)']/t[@t-as='l']/tr" position="replace">
+        <tr>
+            <td>
+                <span t-field="l.quantity"/>
+                <span t-field="l.uos_id"  groups="product.group_uom"/>
+            </td>
+            <td><span t-field="l.name"/></td>
+            <td><span/></td>
+            <td class="text-right">
+                <span t-field="l.price_unit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+            </td>
+            <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+            <td class="text-right">
+                <span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+            </td>
+        </tr>
+    </xpath>
+    <xpath expr="//t[@t-foreach='o.sale_layout_lines(invoice_id=o.id)']" position="after">
+            <tr class="border-black" t-as="l">
+                <td>
+                </td>
+                <td>
+                    <strong>Total Without Taxes</strong>
+                </td>
+                <td class="text-right">
+                </td>
+                <td class="text-right">
+                </td>
+                <td groups="sale.group_discount_per_so_line">
+                </td>
+                <td class="text-right">
+                    <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    Taxes
+                </td>
+                <td class="text-right">
+                </td>
+                <td class="text-right">
+                </td>
+                <td groups="sale.group_discount_per_so_line">
+                </td>
+                <td class="text-right">
+                    <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </td>
+            </tr>
+            <tr class="border-black" style="border-bottom-style:double;">
+                <td>
+                </td>
+                <td>
+                    <strong>Total</strong>
+                </td>
+                <td class="text-right">
+                </td>
+                <td class="text-right">
+                </td>
+                <td groups="sale.group_discount_per_so_line">
+                </td>
+                <td class="text-right">
+                    <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </td>
+            </tr>
+    </xpath>
+    <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
+    </xpath>
+</template>
+</data>
+</openerp>

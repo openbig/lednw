@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* report_footer_modification
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-11 14:00+0000\n"
+"PO-Revision-Date: 2015-05-11 14:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Address:"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "BIC MLPBDE61XXX"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Bank details:"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Contact:"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "DE-49661 Cloppenburg"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Dirk Südkamp"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Email: info@licht-effizienz.de"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Fax: +49 (0) 4471 3226440"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Firm Owner:"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "IBAN DE9867230004049601503"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "LED Nordwest"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "MLPFDL"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Organisation:"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Sevelter Str. 6"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Tel: +49 (0) 4471 7009601"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "Web: http://www.licht-effizienz.de/"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "eu-vat-no: DE218303189"
+msgstr ""
+
+#. module: report_footer_modification
+#: view:website:report.external_layout_footer
+msgid "ger-tax-no: 5613904223"
+msgstr ""

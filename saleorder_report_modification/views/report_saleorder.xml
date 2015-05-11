@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-6']" position="replace">
+        <div class="col-xs-6" style="margin-top: 24px">
+            <div t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.name"/>
+            <div t-field="o.partner_id.name"/>
+            <div t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}' />
+        </div>
+        <div class="col-xs-4 pull-right">
+            <div>
+                <strong>Date:</strong>
+                <span t-field="o.date_order" t-field-options='{"format": "dd.mm.yyyy"}'/>
+            </div>
+            <div>
+                <strong>Reference:</strong>
+                <span t-field="o.name"/>
+            </div>
+        </div>
+    </xpath>
+    <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-5 col-xs-offset-1']" position="replace">
+    </xpath>
+    <xpath expr="//div[@class='page']/h2" position="replace">
+        <h2 style="margin-top:135px;">
+            <span t-if="o.state not in ['draft','sent']">Order</span>
+            <span t-if="o.state in ['draft','sent']">Quotation</span>
+        </h2>
+    </xpath>
+</template>
+<template id="report_sale_layouted_inherit" inherit_id="sale_layout.report_sale_layouted">
+    <xpath expr="//div[@class='page']/table[@class='table table-condensed']/thead" position="replace">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th class="text-right">Taxes</th>
+                <th class="text-right">Unit Price</th>
+                <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                <th class="text-right">Price</th>
+            </tr>
+        </thead>
+    </xpath>
+    <xpath expr="//t[@t-if='p_index &lt; p_size - 1']/thead" position="replace">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th class="text-right">Taxes</th>
+                <th class="text-right">Unit Price</th>
+                <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                <th class="text-right">Price</th>
+            </tr>
+        </thead>
+    </xpath>
+    <xpath expr="//t[@t-foreach='o.sale_layout_lines(order_id = o.id)']/t[@t-as='l']/tr" position="replace">
+        <tr>
+            <td class='col-xs-1'>
+                <span t-field="l.product_uom_qty"/>
+                <span groups="product.group_uom" t-field="l.product_uom"/>
+            </td>
+            <td>
+                <span t-field="l.name"/>
+            </td>
+            <td class="text-right">
+                <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
+            </td>
+            <td class="text-right">
+                <span t-field="l.price_unit"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+            </td>
+            <td groups="sale.group_discount_per_so_line">
+                <span t-field="l.discount"/>
+            </td>
+            <td class="text-right">
+                <span t-field="l.price_subtotal"
+                                t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+            </td>
+        </tr>
+    </xpath>
+    <xpath expr="//t[@t-foreach='o.sale_layout_lines(order_id = o.id)']" position="after">
+        <tr class="border-black" t-as="l">
+            <td>
+            </td>
+            <td>
+                <strong>Total Without Taxes</strong>
+            </td>
+            <td class="text-right">
+            </td>
+            <td class="text-right">
+            </td>
+            <td groups="sale.group_discount_per_so_line">
+            </td>
+            <td class="text-right">
+                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                Taxes
+            </td>
+            <td class="text-right">
+            </td>
+            <td class="text-right">
+            </td>
+            <td groups="sale.group_discount_per_so_line">
+            </td>
+            <td class="text-right">
+                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+            </td>
+        </tr>
+        <tr class="border-black" style="border-bottom-style:double;">
+            <td>
+            </td>
+            <td>
+                <strong>Total</strong>
+            </td>
+            <td class="text-right">
+            </td>
+            <td class="text-right">
+            </td>
+            <td groups="sale.group_discount_per_so_line">
+            </td>
+            <td class="text-right">
+                <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+            </td>
+        </tr>
+    </xpath>
+    <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
+    </xpath>
+    <xpath expr="//div[@class='page']/p[@t-field='o.note']" position="before">
+        <p>
+            <strong>Clerk in charge:</strong>
+            <span t-field="o.user_id"/>
+        </p>
+        <p>
+            <strong>Requested by:</strong>
+            <span t-field="o.partner_id"/>
+        </p>
+        <p>
+            We hope this quotation meets your expectations.
+        </p>
+        <p>
+            If you have any further questions please do not hesitate to contact us.
+        </p>
+        <p>Our general terms and conditions apply.</p>
+    </xpath>
+</template>
+</data>
+</openerp>
