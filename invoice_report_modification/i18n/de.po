@@ -93,7 +93,7 @@ msgstr "Lieferantenrückzahlung"
 #. module: invoice_report_modification
 #: view:website:account.report_invoice_document
 msgid "Taxes"
-msgstr "Steuern"
+msgstr "Umsatzsteuer"
 
 #. module: invoice_report_modification
 #: view:website:account.report_invoice_document
