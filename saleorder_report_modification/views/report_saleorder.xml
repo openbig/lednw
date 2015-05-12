@@ -33,8 +33,7 @@
         <thead>
             <tr>
                 <th>Quantity</th>
-                <th>Description</th>
-                <th class="text-right">Taxes</th>
+                <th colspan="2">Description</th>
                 <th class="text-right">Unit Price</th>
                 <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
                 <th class="text-right">Price</th>
@@ -45,8 +44,7 @@
         <thead>
             <tr>
                 <th>Quantity</th>
-                <th>Description</th>
-                <th class="text-right">Taxes</th>
+                <th colspan="2">Description</th>
                 <th class="text-right">Unit Price</th>
                 <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
                 <th class="text-right">Price</th>
@@ -59,11 +57,8 @@
                 <span t-field="l.product_uom_qty"/>
                 <span groups="product.group_uom" t-field="l.product_uom"/>
             </td>
-            <td>
+            <td colspan="2">
                 <span t-field="l.name"/>
-            </td>
-            <td class="text-right">
-                <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
             </td>
             <td class="text-right">
                 <span t-field="l.price_unit"
@@ -131,14 +126,6 @@
     <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
     </xpath>
     <xpath expr="//div[@class='page']/p[@t-field='o.note']" position="before">
-        <p>
-            <strong>Clerk in charge:</strong>
-            <span t-field="o.user_id"/>
-        </p>
-        <p>
-            <strong>Requested by:</strong>
-            <span t-field="o.partner_id"/>
-        </p>
         <p>
             We hope this quotation meets your expectations.
         </p>
