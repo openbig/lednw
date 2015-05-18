@@ -82,6 +82,11 @@ msgstr "Rückzahlung"
 
 #. module: invoice_report_modification
 #: view:website:account.report_invoice_document
+msgid "Reference:"
+msgstr "Referenz:"
+
+#. module: invoice_report_modification
+#: view:website:account.report_invoice_document
 msgid "Supplier Invoice"
 msgstr "Lieferantenrechnung"
 
