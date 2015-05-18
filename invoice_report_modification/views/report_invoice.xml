@@ -17,6 +17,10 @@
                 <strong>Invoice Number:</strong>
                 <span t-field="o.number"/>
             </div>
+            <div t-if="o.reference">
+                    <strong>Reference:</strong>
+                    <span t-field="o.reference"/>
+            </div>
         </div>
     </xpath>
 
@@ -34,22 +38,6 @@
     </xpath>
 
     <xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
-        <div class="row">
-            <div class="col-xs-5">
-                <div>
-                    <strong>Your Order:</strong>
-                    <span t-field="o.origin"/>
-                </div>
-                <div>
-                    <strong>Ordered by:</strong>
-                    <span t-field="o.partner_id.name"/>
-                </div>
-                <div>
-                    <strong>Our clerk in charge:</strong>
-                    <span t-field="o.create_uid"/>
-                </div>
-            </div>
-        </div>
     </xpath>
     <xpath expr="//div[@class='page']/div[@t-if='o.tax_line']" position="replace">
     </xpath>

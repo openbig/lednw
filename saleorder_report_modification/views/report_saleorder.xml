@@ -19,6 +19,8 @@
             </div>
         </div>
     </xpath>
+    <xpath expr="//div[@class='page']/div[@id='informations']" position="replace">
+    </xpath>
     <xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-5 col-xs-offset-1']" position="replace">
     </xpath>
     <xpath expr="//div[@class='page']/h2" position="replace">
