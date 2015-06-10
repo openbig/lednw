@@ -11,7 +11,7 @@
         <div class="col-xs-4 pull-right">
             <div>
                 <strong>Date:</strong>
-                <span t-field="o.date_order" t-field-options='{"format": "d.MM.Y"}'/>
+                <span t-field="o.date_order" t-field-options='{"format": "d.M.Y"}'/>
             </div>
             <div>
                 <strong>Reference:</strong>
